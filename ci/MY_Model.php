@@ -32,6 +32,13 @@ class MY_Model extends CI_Model
      */
     protected $suffix = '_0';
 
+    
+    /**
+     * 模型后缀
+     * @var string
+     */
+    protected $model_suffix = '_model';    
+
     public function __construct()
     {
         parent::__construct();
@@ -50,7 +57,23 @@ class MY_Model extends CI_Model
      */
     public function get_model_name()
     {
-        return strtolower(substr(get_class($this), 0, -strlen(config_item('model_suffix'))));
+        return strtolower(substr(get_class($this), 0, -strlen($this->model_suffix)));
+    }
+
+    /**
+     * 设置模型后缀
+     */
+    public function set_model_suffix($suffix)
+    {
+        $this->model_suffix = $suffix;
+    }
+
+    /**
+     * 获取模型后缀
+     */
+    public function get_model_suffix()
+    {
+        return $this->model_suffix;
     }
 
     /**
